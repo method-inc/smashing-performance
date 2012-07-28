@@ -64,19 +64,6 @@
     // Globals
     var clickTime;
 
-    // Build boxes
-    var red = $('#redContents');
-    var blue = $('#blueContents');
-    function makeBoxes(n) {
-      var boxCount = vm.get('boxCount');
-      while (boxCount < n) {
-        $('<div class="box">' + (++boxCount) + '</div>').appendTo(red);
-        $('<div class="box">' + (++boxCount) + '</div>').appendTo(blue);
-      }
-      vm.set('boxCount', boxCount);
-    }
-    makeBoxes(20); // Start with just a few
-
     // Build ViewModel
     var vm = new Backbone.ViewModel({
       activeTab: 'red',
@@ -114,6 +101,19 @@
     vm.compute('isBlue', function() {
       return this.get('activeTab') === 'blue';
     });
+
+    // Build boxes
+    var red = $('#redContents');
+    var blue = $('#blueContents');
+    function makeBoxes(n) {
+      var boxCount = vm.get('boxCount');
+      while (boxCount < n) {
+        $('<div class="box">' + (++boxCount) + '</div>').appendTo(red);
+        $('<div class="box">' + (++boxCount) + '</div>').appendTo(blue);
+      }
+      vm.set('boxCount', boxCount);
+    }
+    makeBoxes(20); // Start with just a few
 
     // Update time
     function updateTime() {

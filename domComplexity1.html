@@ -18,6 +18,20 @@
   <!-- Styles -->
   <link rel="stylesheet" href="styles/global.css" />
 
+  <!-- Analytics -->
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33682299-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body>
 
@@ -27,20 +41,18 @@
     <span data-bind='text(lastTime)'></span>ms
   </p>
   <ul class='tabBar'>
-    <li class='tab' data-bind='on(tap, goRed); css(active, isRed)'>Red</li>
-    <li class='tab' data-bind='on(tap, goBlue); css(active, isBlue)'>Blue</li>
+    <li class='tab' data-bind='on(tab, goRed); css(active, isRed)'>Red</li>
+    <li class='tab' data-bind='on(tab, goBlue); css(active, isBlue)'>Blue</li>
   </ul>
   <h1 class='tabTitle'>1. Big is bad</h1>
+  <section class='controls'>
+    <div class='button' data-bind='on(tap, doubleBoxes)'>Double my elements</div>
+    <pre data-bind='text(boxHistory)'></pre>
+  </section>
   <section class='tabContents' id='redContents' data-bind='css(active, isRed)'>
   </section>
   <section class='tabContents' id='blueContents' data-bind='css(active, isBlue)'>
   </section>
-  <section class='controls'>
-    <div class='button' data-bind='on(tap, doubleBoxes)'>Double my elements</div>
-    <div class='button' data-bind='on(tap, runTest)'>Run automated test</div>
-    <pre data-bind='text(boxHistory)'></pre>
-  </section>
-
   <!-- Scripts -->
   <script src='vendor/zepto/zepto.min.js'></script>
   <script src='vendor/underscore/underscore-1.3.3.js'></script>
@@ -50,13 +62,6 @@
 
     // Globals
     var boxCount = 0, clickTime;
-
-    // Clear boxes
-    function clearBoxes() {
-      red.empty();
-      blue.empty();
-      boxCount = 0;
-    }
 
     // Build boxes
     var red = $('#redContents');
@@ -68,18 +73,6 @@
       }
     }
     makeBoxes(20); // Start with just a few
-
-    // Run a swap test
-    function swap(count) {
-      var target = (vm.get('activeTab') === 'red') ? 'Blue' : 'Red';
-      vm['go' + target]();
-      setTimeout(function() {
-        if (count > 0) {
-          vm.doubleBoxes();
-          swap(count - 1);
-        }
-      }, 2000);
-    }
 
     // Build ViewModel
     var vm = new Backbone.ViewModel({
@@ -110,16 +103,6 @@
       makeBoxes(boxCount * 2);
     };
 
-    vm.runTest = function() {
-      clearBoxes();
-      this.goRed();
-      makeBoxes(20);
-      this.boxHistory = '';
-      setTimeout(function() {
-        swap(8);
-      }, 500);
-    };
-
     vm.compute('isRed', function() {
       return this.get('activeTab') === 'red';
     });
@@ -133,6 +116,7 @@
       var difference = Date.now() - clickTime;
       vm.set('boxHistory', vm.get('boxHistory') + '\n' + boxCount + ' elements: ' + difference + 'ms');
       vm.set('lastTime', difference);
+      _gaq.push(['_trackEvent', 'DOMcomplexity', navigator.userAgent, boxCount, difference]);
     }
 
     // Bind ViewModel

@@ -91,7 +91,7 @@
     };
 
     vm.doubleBoxes = function() {
-      makeBoxes(boxCount * 2);
+      makeBoxes(this.get('boxCount') * 2);
     };
 
     vm.compute('isRed', function() {

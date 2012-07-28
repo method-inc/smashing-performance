@@ -1,0 +1,164 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helvetica, sans-serif;
+}
+
+.tabBar {
+  width: 100%;
+  padding: 6px 0 0 2px;
+}
+
+.tabTitle {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  font-size: 15px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.tab {
+  padding: 15px 20px;
+  font-size: 15px;
+  display: inline-block;
+  color: #fff;
+  background: #333;
+  border-top: solid 1px #555;
+  border-left: solid 1px #555;
+}
+
+.tab.active {
+  background: #000;
+}
+
+.tabContents {
+  display: none;
+}
+
+.tabContents.active {
+  display: block;
+}
+
+.box {
+  border-right: solid 1px black;
+  border-bottom: solid 1px black;
+  border-left: solid 1px white;
+  border-top: solid 1px white;
+  background: #999;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 32px;
+  color: #ccc;
+  font-size: 10px;
+  float: left;
+}
+
+.box:nth-child(5n) {
+  background: #555;
+}
+
+#redContents .box {
+  background: #900;
+}
+
+#redContents .box:nth-child(5n) {
+  background: #500;
+}
+
+#blueContents .box {
+  background: #009;
+}
+
+#blueContents .box:nth-child(5n) {
+  background: #005;
+}
+
+.controls {
+  clear: both;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  display: block;
+}
+
+.button {
+  border-right: solid 1px black;
+  border-bottom: solid 1px black;
+  border-left: solid 1px white;
+  border-top: solid 1px white;
+  background: #999;
+  padding: 10px 30px;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 15px;
+  display: inline-block;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.button:active {
+  background: #000;
+}
+
+.switchTimer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  font-size: 12px;
+}

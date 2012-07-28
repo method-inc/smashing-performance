@@ -46,7 +46,7 @@
   </ul>
   <h1 class='tabTitle'>1. Big is bad</h1>
   <section class='controls'>
-    <div class='button' data-bind='on(tap, doubleBoxes)'>Double my elements</div>
+    <div class='button' data-bind='on(tap, doubleBoxes)'>Double my elements (<span data-bind='text(boxCount)'></span>)</div>
     <p>Tab back and forth a few times, double your elements, repeat!</p>
     <pre data-bind='text(boxHistory)'></pre>
   </section>
@@ -62,16 +62,18 @@
   <script>
 
     // Globals
-    var boxCount = 0, clickTime;
+    var clickTime;
 
     // Build boxes
     var red = $('#redContents');
     var blue = $('#blueContents');
     function makeBoxes(n) {
+      var boxCount = vm.get('boxCount');
       while (boxCount < n) {
         $('<div class="box">' + (++boxCount) + '</div>').appendTo(red);
         $('<div class="box">' + (++boxCount) + '</div>').appendTo(blue);
       }
+      vm.set('boxCount', boxCount);
     }
     makeBoxes(20); // Start with just a few
 
@@ -79,7 +81,8 @@
     var vm = new Backbone.ViewModel({
       activeTab: 'red',
       lastTime: 0,
-      boxHistory: ''
+      boxHistory: '',
+      boxCount: 0
     });
 
     vm.goRed = function() {
@@ -115,6 +118,7 @@
     // Update time
     function updateTime() {
       var difference = Date.now() - clickTime;
+      var boxCount = vm.get('boxCount');
       vm.set('boxHistory', vm.get('boxHistory') + '\n' + boxCount + ' elements: ' + difference + 'ms');
       vm.set('lastTime', difference);
       _gaq.push(['_trackEvent', 'DOMcomplexity', navigator.userAgent, boxCount, difference]);

@@ -120,7 +120,7 @@
     // Update time
     function updateTime() {
       var difference = Date.now() - clickTime;
-      var boxCount = vm.get('boxCount');
+      var boxCount = vm.get('boxCount') + '';
       vm.set('boxHistory', vm.get('boxHistory') + '\n' + boxCount + ' elements: ' + difference + 'ms');
       vm.set('lastTime', difference);
       _gaq.push(['_trackEvent', 'dom', platform.product || 'pc', boxCount, difference]);

@@ -127,10 +127,12 @@
     }
 
     // Convert clicks to taps
+    /* disabled because it seems to break android... of course...
     $(document).on('click', function(e) {
       $(e.target).trigger('tap');
       e.preventDefault();
     })
+    */
 
     // Bind ViewModel
     vm.bindView('data-bind');

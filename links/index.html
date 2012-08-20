@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html manifest="/cache.manifest">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Skookum</title>
+  <!-- Mobile Settings -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="images/icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
+  <link rel="apple-touch-startup-image" href="images/startup.png" />
+  <!-- Styles -->
+  <link rel='stylesheet' href='vendor/uikit/stylesheets/iphone.css' />
+  <link rel='stylesheet' href='styles/styles.css' />
+  <link rel="stylesheet" href="vendor/add2home/add2home.css" />
+  <!-- Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23423078-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>
+
+
+  <!-- Content -->
+  <div id="header">
+    <h1>Mobile HTML5</h1>
+  </div>
+
+  <h1>Do touch yourself</h1>
+  <p>
+    <button id='badbutton'>Normal 'click' button</button>
+    <a id='goodbutton' class='button white'>Custom 'singleTap' button</a>
+  </p>
+
+  <h1>Ignore standards &amp; accessibility</h1>
+  <p>
+    <input name='badRad' id='rad1' type='radio' />
+    <label for='rad1'>acces</label>
+    <input name='badRad' id='rad2' type='radio' />
+    <label for='rad2'>ibile</label>
+  </p>
+  <p>
+    <input name='betterRad' id='rad3' type='radio' />
+    <label for='rad3' onclick=''>empty</label>
+    <input name='betterRad' id='rad4' type='radio' />
+    <label for='rad4' onclick=''>onclick</label>
+  </p>
+  <ul>
+    <li class='bestRad checked' id='rad5'>totally</li>
+    <li class='bestRad' id='rad6'>inaccessible</li>
+  </ul>
+
+  <h1>Use alert() and friends</h1>
+  <p>
+    <a id='alertBtn' class='button green'>alert()</a>
+    <a id='confirmBtn' class='button black'>confirm()</a>
+    <a id='promptBtn' class='button white'>prompt()</a>
+  </p>
+
+  <h1>Use specific forms</h1>
+  <form>
+    <ul class='form'>
+      <li><input type='email' placeholder='email' /></li>
+      <li><input type='tel' placeholder='phone number' /></li>
+      <li><input type='url' placeholder='url' /></li>
+      <li><input type='date' value='2012-04-27' /></li>
+      <li><input type='text' pattern='[0-9]*' placeholder='zip' /></li>
+      <li><input type='number' value='10' /></li>
+      <li><input type='text' placeholder='will autocorrect and autocapitalize' autocorrect='on' autocapitalize='on' /></li>
+      <li><input type='text' placeholder='will leave you alone' autocorrect='off' autocapitalize='off' /></li>
+    </ul>
+  </form>
+  <h1>(David Calhoun / css)</h1>
+  <div class="iphone-slider">
+    <input type="range" value="0"></input>
+    <span>type="range"</span>
+  </div>
+
+  <h1>Animate with CSS3 instead of JS</h1>
+  <div id='animBox'>
+    <div id='animTarget1' class='animTarget'></div>
+    <div id='animTarget2' class='animTarget'></div>
+  </div>
+  <p>
+    <a id='jsAnimBtn' class='button red'>Try JavaScript</a>
+    <a id='cssAnimBtn' class='button green'>Try CSS</a>
+  </p>
+
+  <h1>Embrace geolocation</h1>
+  <ul class='form nomargin'>
+    <li><input type='text' enabled='false' id='geoStatus' /></li>
+  </ul>
+  <p>
+    <a id='geoBtn' class='button black'>Where am I?</a>
+  </p>
+
+  <h1>Link to phones and maps</h1>
+  <ul class='field'>
+    <li>
+      <h3>Call Hunter</h3>
+      <a href='tel:17042530040'>704 253 0040</a>
+    </li>
+    <li>
+      <h3>Text Hunter</h3>
+      <a href='sms:17042530040'>704 253 0040</a>
+    </li>
+    <li>
+      <h3>Map converge</h3>
+      <a href='http://maps.google.com/maps?q=1301+Gervais+Street,+Columbia,+SC'>1301 Gervais St, Columbia, SC</a>
+    </li>
+  </ul>
+
+  <!-- Scripts -->
+  <script src='vendor/zeptojs/zepto.js'></script>
+  <script type="text/javascript" charset="utf-8">
+    window.scrollTo(0, 1);
+    var addToHomeConfig = {
+      returningVisitor: false,
+      startDelay: 1000,
+      expire: 0,
+      touchIcon: true,
+      lifespan: 5000
+    };
+    $(document).ready(function() {
+      // Hide the URL bar
+      $('#badbutton').on('click', function(event) {
+        alert('Click!');
+        event.preventDefault();
+      });
+      $('#goodbutton').on('singleTap', function(event) {
+        alert('Tap!');
+        event.preventDefault();
+      });
+      $('#alertBtn').on('singleTap', function(event) {
+        alert('Great job!');
+        event.preventDefault();
+      });
+      $('#confirmBtn').on('singleTap', function(event) {
+        confirm('Best app ever?');
+        event.preventDefault();
+      });
+      $('#promptBtn').on('singleTap', function(event) {
+        prompt('What is your favorite color?');
+        event.preventDefault();
+      });
+      $('#jsAnimBtn').on('singleTap', function(event) {
+        var target = $('#animTarget1');
+        var x = 0;
+        function moveRight() {
+          x += 2;
+          target.css('left', x + '%');
+          if (x < 100) {
+            setTimeout(moveRight, 20);
+          }
+        }
+        moveRight();
+        event.preventDefault();
+      });
+      $('#cssAnimBtn').on('singleTap', function(event) {
+        $('#animTarget2').toggleClass('complete');
+        event.preventDefault();
+      });
+      $('#geoBtn').on('singleTap', function(event) {
+        var geo = navigator.geolocation;
+        if (geo) {
+          var location = geo.getCurrentPosition(function success(pos) {
+            $('#geoStatus').val('lat: ' + pos.coords.latitude + ', long: ' + pos.coords.longitude);
+          }, function error() {
+            $('#geoStatus').val('error getting position');
+          });
+        }
+        else {
+          $('#geoStatus').val("This device doesn't support geolocation.");
+        }
+        event.preventDefault();
+      });
+      $('.bestRad').on('singleTap', function(event, el) {
+        $('.bestRad').removeClass('checked');
+        $(event.target).addClass('checked');
+      });
+    });
+  </script>
+  <script src='vendor/add2home/add2home.js'></script>
+  <!-- demo-specific hack -->
+  <script>addToHome.reset();</script>
+</body>
+</html>
+
+
